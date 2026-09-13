@@ -4,7 +4,6 @@ from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 from django.views import generic
 
-
 from polls.models import Question, Choice
 
 
@@ -15,14 +14,17 @@ class IndexView(generic.ListView):
     def get_queryset(self):
         return Question.objects.order_by('-pub_date')
 
-def detail(request, question_id):
-    question = get_object_or_404(Question, pk=question_id)
-    return render(request, 'polls/detail.html', {'question': question})
+      
+class DetailView(generic.DetailView):
+    model = Question
+    template_name = 'polls/detail.html'
 
+    
 def results(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     return render(request, 'polls/results.html', {'question': question})
 
+  
 def vote(request, question_id):
     question = get_object_or_404(Question, pk=question_id)
     try:
