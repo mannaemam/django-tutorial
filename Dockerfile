@@ -1,7 +1,7 @@
 FROM python:3.15.0rc2-alpine3.24
 LABEL maintainer='Emamul Haque Manna'
 
-ENV PYTHONBUFFERED 1
+ENV PYTHONUNBUFFERED 1
 
 COPY ./requirements.txt /tmp/requirements.txt
 COPY . /django-tutorial
